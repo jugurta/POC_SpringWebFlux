@@ -1,33 +1,45 @@
 package fr.acssi.demo.service;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.acssi.demo.controller.exceptions.ResourceNotFoundException;
 import fr.acssi.demo.entities.ResourceEntity;
 import fr.acssi.demo.repository.ResourceRepository;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 
 @Service
-
+@Slf4j
 public class ResourceService {
-    public Mono<ResourceEntity> save(ResourceEntity resourceEntity) {
-        return resourceRepository.save(resourceEntity);
-    }
-
 
     @Autowired
     ResourceRepository resourceRepository;
 
-    public Mono<ResourceEntity> findResourceById(Integer id) {
+    public ResourceEntity save(ResourceEntity resourceEntity) {
+        return resourceRepository.save(resourceEntity);
 
-        Mono<ResourceEntity> resource = resourceRepository.findById(id);
-        return resource;
+
     }
+
+    public ResourceEntity findResourceById(Integer id) {
+
+        Optional<ResourceEntity> resource = resourceRepository.findById(id);
+        if (resource.isEmpty())
+            throw new ResourceNotFoundException();
+        return resource.get();
+    }
+
+    public List<ResourceEntity> findAllResources() {
+        return resourceRepository.findAll();
+    }
+
     public void createRandomResources()
     {
         for (int i=0;i<200; i++)
@@ -39,10 +51,6 @@ public class ResourceService {
             resourceEntity.setState(r.nextInt());
             resourceRepository.save(resourceEntity);
         }
-    }
-
-    public Flux<ResourceEntity> findAllResources() {
-        return resourceRepository.findAll();
     }
 
 }
