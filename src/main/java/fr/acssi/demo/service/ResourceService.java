@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Random;
+
 
 @Service
 
@@ -26,15 +28,16 @@ public class ResourceService {
         Mono<ResourceEntity> resource = resourceRepository.findById(id);
         return resource;
     }
-    public void createMultipeResources()
+    public void createRandomResources()
     {
-        for (int i=0; i<200; i++)
+        for (int i=0;i<200; i++)
         {
-        ResourceEntity resourceEntity = new ResourceEntity();
-        resourceEntity.setSequence(i);
-        resourceEntity.setName(i+"");
-        resourceEntity.setState(i);
-        resourceRepository.save(resourceEntity).subscribe();
+            Random r = new Random();
+            ResourceEntity resourceEntity = new ResourceEntity();
+            resourceEntity.setSequence(r.nextInt());
+            resourceEntity.setName(r.nextInt()+"");
+            resourceEntity.setState(r.nextInt());
+            resourceRepository.save(resourceEntity);
         }
     }
 

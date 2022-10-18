@@ -1,7 +1,6 @@
 package fr.acssi.demo.controller;
 
 
-
 import fr.acssi.demo.entities.ResourceEntity;
 import fr.acssi.demo.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +25,19 @@ public class ResourceController {
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createMultipleResource()
-    {
-    resourceService.createMultipeResources();
+    @ResponseStatus(HttpStatus.OK)
+    public void createMultipleResource() {
+        resourceService.createRandomResources();
     }
 
     @GetMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<ResourceEntity> getResourceById(@PathVariable int id) {
         return resourceService.findResourceById(id);
     }
 
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public Flux<ResourceEntity> getAllResources() {
         return resourceService.findAllResources();
     }
