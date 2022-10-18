@@ -20,13 +20,13 @@ public class ResourceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createResource(@RequestBody ResourceEntity body) {
-        resourceService.save(body);
+    public Mono<ResourceEntity> createResource(@RequestBody ResourceEntity body) {
+        return resourceService.save(body);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void createMultipleResource() {
+    public void createRandomResources() {
         resourceService.createRandomResources();
     }
 

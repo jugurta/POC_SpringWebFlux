@@ -15,8 +15,8 @@ import java.util.Random;
 @Service
 
 public class ResourceService {
-    public void save(ResourceEntity resourceEntity) {
-        resourceRepository.save(resourceEntity).subscribe();
+    public Mono<ResourceEntity> save(ResourceEntity resourceEntity) {
+        return resourceRepository.save(resourceEntity);
     }
 
 
