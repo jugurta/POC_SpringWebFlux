@@ -6,5 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      name : deploy
-      run : "Echo deploying with no environment"
+      - uses: actions/checkout@v3
+      - name : deploy
+        run : "Echo deploying with no environment"
