@@ -1,0 +1,10 @@
+name : Deploy on Dev
+on : [workflow_dispatch]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      name : deploy
+      run : "Echo deploying with no environment"
