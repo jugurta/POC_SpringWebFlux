@@ -1,5 +1,7 @@
 name : Deploy on Dev
 on:
+  push:
+    branches: [ $default-branch ]
   workflow_dispatch:
 
 jobs:
