@@ -1,8 +1,6 @@
 package fr.acssi.demo.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import fr.acssi.demo.controller.exceptions.BadParametersException;
 import fr.acssi.demo.entities.ResourceEntity;
 import fr.acssi.demo.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +21,7 @@ public class ResourceController {
 
     @PostMapping
     public ResponseEntity<ResourceEntity> createResource(@RequestBody ResourceEntity resourceEntity) {
-
-        ResourceEntity dbResourceEntity = resourceService.save(resourceEntity);
-        return ResponseEntity.status(HttpStatus.CREATED).body(resourceEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resourceService.save(resourceEntity));
 
     }
 
