@@ -12,4 +12,4 @@ jobs:
     environment: development
     steps:
     - name : deploy
-      run : "Echo deploying in ${{ github.event.inputs.environment }}"
+      run : echo "echo deploying in ${{ github.event.inputs.environment }}"
