@@ -1,0 +1,15 @@
+name : Deploy on Dev
+on :
+  workflow_dispatch:
+    inputs:
+      environment:
+        description : 'Environment'
+        required : true
+        default: 'None'
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      name : deploy
+      run : "Echo deploying in ${{ github.event.inputs.environment }}"
