@@ -1,46 +1,49 @@
 package fr.acssi.demo.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import fr.acssi.demo.controller.exceptions.BadParametersException;
 import fr.acssi.demo.entities.ResourceEntity;
 import fr.acssi.demo.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/resources")
 public class ResourceController {
 
+
     @Autowired
     ResourceService resourceService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<ResourceEntity> createResource(@RequestBody ResourceEntity body) {
-        return resourceService.save(body);
-    }
+    public ResponseEntity<ResourceEntity> createResource(@RequestBody ResourceEntity resourceEntity) {
 
-    @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void createRandomResources() {
-        resourceService.createRandomResources();
+        ResourceEntity dbResourceEntity = resourceService.save(resourceEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resourceEntity);
+
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<ResourceEntity> getResourceById(@PathVariable int id) {
-        return resourceService.findResourceById(id);
-    }
+    public ResponseEntity<ResourceEntity> getResourceById(@PathVariable int id) {
+        return ResponseEntity.status(HttpStatus.OK).body(resourceService.findResourceById(id));
 
-    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<ResourceEntity> getAllResources() {
-        return resourceService.findAllResources();
     }
 
 
+    @GetMapping
+    public ResponseEntity<List<ResourceEntity>> getAllResources() {
+        return ResponseEntity.status(HttpStatus.OK).body(resourceService.findAllResources());
+    }
+
+
+    @PutMapping
+    public void createRandomResources() {
+        resourceService.createRandomResources();
+    }
 }
