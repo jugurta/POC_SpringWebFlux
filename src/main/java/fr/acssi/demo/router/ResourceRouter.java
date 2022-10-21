@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -24,7 +25,7 @@ public class ResourceRouter {
     @Bean
     public RouterFunction<ServerResponse> getResourcesRoute() {
         return route(GET("/resources"),
-                request -> ok().body(resourceService.findAllResources(), ResourceEntity.class));
+                request -> ok().contentType(MediaType.TEXT_EVENT_STREAM).body(resourceService.findAllResources(), ResourceEntity.class));
     }
 
 
