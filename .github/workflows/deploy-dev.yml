@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      name : deploy
+    - name : deploy
       run : "Echo deploying in ${{ github.event.inputs.environment }}"
