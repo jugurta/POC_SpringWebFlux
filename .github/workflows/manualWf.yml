@@ -1,9 +1,0 @@
-name : Deploy on Dev
-on:  workflow_dispatch
-
-jobs:
-  log-the-inputs:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Hello"
