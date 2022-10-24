@@ -8,7 +8,7 @@ jobs:
     services:
       mongodb:
         image: mongo:latest
-        environment:
+        env:
           MONGO_INITDB_USERNAME: hello
           MONGO_INITDB_PASSWORD: password
           MONGO_INITDB_DATABASE: test
