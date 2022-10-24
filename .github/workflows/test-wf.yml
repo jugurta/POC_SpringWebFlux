@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mongodb:
-        image: mongo
+        image: mongo:latest
         env:
-          MONGO_INITDB_ROOT_USERNAME: hello
-          MONGO_INITDB_ROOT_PASSWORD: password
+          MONGO_INITDB_USERNAME: hello
+          MONGO_INITDB_PASSWORD: password
           MONGO_INITDB_DATABASE: test
         ports:
           - 27017:27017
