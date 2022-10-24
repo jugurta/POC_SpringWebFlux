@@ -12,6 +12,7 @@ management:
 spring:
   data:
     mongodb:
+      authentication-database=mydatabase: admin
       database: test
       port: 27017
       username: test
