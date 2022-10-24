@@ -12,6 +12,8 @@ management:
 spring:
   data:
     mongodb:
-      database: test_db
+      database: test
       port: 27017
+      username: test
+      password: password
       host: localhost
