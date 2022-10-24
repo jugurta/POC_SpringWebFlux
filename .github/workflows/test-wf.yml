@@ -9,9 +9,9 @@ jobs:
       mongodb:
         image: mongo
         env:
-          MONGO_USERNAME: test
-          MONGO_PASSWORD: password
-          MONGO_DATABASE: test
+          MONGODB_USERNAME: test
+          MONGODB_PASSWORD: password
+          MONGODB_DATABASE: test
         ports:
           - 27017:27017
 
