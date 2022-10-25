@@ -12,4 +12,4 @@ management:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://jugurtha:puissanceJ@localhost:27017/acssi?retryWrites=true&w=majority
+      uri: mongodb+srv://test:password@localhost/acssi?retryWrites=true&w=majority
