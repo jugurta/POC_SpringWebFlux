@@ -12,7 +12,6 @@ jobs:
         env:
           MONGO_INITDB_ROOT_USERNAME: test
           MONGO_INITDB_ROOT_PASSWORD: password
-          MONGO_INITDB_DATABASE: test
         options: >-
           --health-cmd mongo
           --health-interval 10s
