@@ -28,14 +28,13 @@ public class ResourceService {
         Mono<ResourceEntity> resource = resourceRepository.findById(id);
         return resource;
     }
-    public void createRandomResources()
-    {
-        for (int i=0;i<200; i++)
-        {
+
+    public void createRandomResources() {
+        for (int i = 0; i < 200; i++) {
             Random r = new Random();
             ResourceEntity resourceEntity = new ResourceEntity();
             resourceEntity.setSequence(r.nextInt());
-            resourceEntity.setName(r.nextInt()+"");
+            resourceEntity.setName(r.nextInt() + "");
             resourceEntity.setState(r.nextInt());
             resourceRepository.save(resourceEntity);
         }
