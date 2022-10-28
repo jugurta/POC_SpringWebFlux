@@ -35,7 +35,7 @@ public class ResourceRouter {
                 request -> {
                     Integer id = Integer.parseInt(request.pathVariable("id"));
                     return ok().body(resourceService.findResourceById(id), ResourceEntity.class);
-                });
+                });;
     }
 
 }
